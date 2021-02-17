@@ -16,3 +16,5 @@
 ```python
 print("헬로우 파이썬")
 ```
+
+- [MarkDown-Emoji-link](https://gist.github.com/rxaviers/7360908)
