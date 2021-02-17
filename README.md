@@ -2,7 +2,7 @@
  * 수요일 1시30분
  * 파이썬 코딩 공부
 
-:smile:
+# :smile:
 ## **Python Basic**
 - 풀잎스쿨 시간에 사용한 노트북 자료
 
@@ -17,6 +17,11 @@
 ```python
 print("헬로우 파이썬")
 ```
+```shell
+git add .
+```
+
+
 
 - [MarkDown-Emoji-link](https://gist.github.com/rxaviers/7360908)
 </details>
