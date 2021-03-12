@@ -20,10 +20,13 @@ class ModelSelect:
 class MakeModel(ModelSelect):
     
     def __init__(self, model_name):
-        super(AddLayer, self).__init__(model_name)
+        super(MakeModel, self).__init__(model_name)
     
-    def add_dense_layer(self, nums ,activation=None):
-        return keras.layers.Dense(nums, activation=activation)
+    def add_dense_layer(self, nums ,activation="n"):
+        if activation == "n":    
+            return keras.layers.Dense(nums, activation=None)
+        else:
+            return keras.layers.Dense(nums, activation=activation)
     
     def add_batch_norm(self):
         return keras.layers.BatchNormalization()
