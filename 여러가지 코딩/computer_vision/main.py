@@ -1,13 +1,16 @@
 import os
 import argparse
 from glob import glob
+import pandas as pd 
 import tensorflow as tf 
 
 from make_tfrecord import MakeTFRecord
 from preprocessing import delete_mat, delete_4_channel, label_encoding
 from dataloader import TFRecordLoader
-from model import MakeModel
+from model import MakeModel, TestModel
 from compile_option import Optimizer, Loss
+from prediction import Prediction
+
 
 def to_bool(x):
     if x.lower() in ['true','t']:
@@ -42,13 +45,14 @@ if __name__ == "__main__":
     parser.add_argument("--optimizer", type=str, default="adam" ,help="옵티마이저 선택 adam or sgd")
     parser.add_argument("--lr", type=float, default=0.01 ,help="옵티마이저의 학습률 선택")
     parser.add_argument("--loss", type=str, default="sc", help="loss 선택")
-    parser.add_argument("--model_save_path", type=str, default="./model.h5", help="모델 저장 경로")
+    parser.add_argument("--model_path", type=str, default="./model.h5", help="모델 저장 경로")
     parser.add_argument("--batch_size", type=int, default=32, help="배치 사이즈 입력")
     parser.add_argument("--epoch", type=int, default=20, help="에포크 수 결정")
     parser.add_argument("--patience", type=int, default=0, help="몇 번까지 참아줄 것인가!?")
     parser.add_argument("--lr_schedule", type=to_bool, default='false', help=" 러닝레이트 스케쥴러를 쓸 것인지 아닌지?")
     parser.add_argument("--train_size_rate", type=float, default=0.8, help="trainset의 비율")
-
+    parser.add_argument("--hist_path", type=str, default='./hist/hist.pkl' ,help="hist를 pickle형태로 저장")
+    parser.add_argument("--test_path", type=str, default="./" , help="test 데이터 경로 입력")
     args = parser.parse_args()
     
     data_list, data_class = preprocessing_1(args.data_path)
@@ -72,7 +76,7 @@ if __name__ == "__main__":
         batch_size = args.batch_size
         early_stopping = tf.keras.callbacks.EarlyStopping(patience=args.patience)
         model_save = tf.keras.callbacks.ModelCheckpoint(
-                filepath=args.model_save_path,
+                filepath=args.model_path,
                 monitor='val_loss',
                 save_best_only=True,
                 verbose=1,
@@ -134,4 +138,12 @@ if __name__ == "__main__":
                 epochs=epoch,
                 callbacks=[early_stopping, model_save]
             )
-        
+        hist = pd.DataFrame(history.history)
+        hist = hist.to_pickle(args.hist_path)
+    elif args.mode == "test":
+        test_model = TestModel(args.model_path)
+        test_model = test_model.test_model()
+
+        pred = Prediction()
+
+        pred.predict_test(args.test_path, test_model, args.img_size)

@@ -42,3 +42,12 @@ class MakeModel(ModelSelect):
             args.popleft()
         model = keras.Model(inputs, self.model)
         return model
+
+class TestModel:
+
+    def __init__(self, model_path):
+        self.model_path = model_path 
+
+    def test_model(self):
+        test_model = tf.keras.models.load_model(self.model_path)
+        return test_model
