@@ -53,25 +53,3 @@ class TFRecordLoader:
     
     def __call__(self):
         return self.make_dataset()
-
-    
-    def food_tf_dataset(self, tfr_size):
-
-        train_size = int(float(self.train_valid_rate[0]) * tfr_size)
-        val_size = int(float(self.train_valid_rate[1]) * tfr_size)
-
-        dataset = self.parsed_image_dataset
-        dataset = dataset.shuffle(30000)
-        # train
-        train_ds = dataset.take(train_size)
-        train_ds = train_ds.map(self._decode_img)
-        train_ds = train_ds.batch(self.batch_size)
-        train_ds = train_ds.repeat()
-        train_ds = train_ds.prefetch(tf.data.experimental.AUTOTUNE)
-
-        valid_ds = dataset.skip(train_size)
-        valid_ds = dataset.take(val_size)
-        valid_ds = valid_ds.map(self._decode_img)
-        valid_ds = valid_ds.batch(self.batch_size)
-
-        return train_ds, valid_ds
