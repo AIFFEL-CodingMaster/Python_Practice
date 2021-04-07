@@ -8,7 +8,8 @@ import pandas as pd
 from make_tfrecord import MakeTFRecord
 from preprocessing import delete_mat, delete_4_channel, label_encoding
 from dataloader import TFRecordLoader
-from model import MakeModel
+from model import MakeModel, TestModel
+from prediction import Prediction
 
 def preprocessing_1(data_path):
     data_path = data_path + "*"
@@ -37,6 +38,7 @@ if __name__ == "__main__":
     parser.add_argument("--dense_nums", nargs="+", help="dense의 뉴런 수 입력")
     parser.add_argument("--dense_activation", nargs="+", help="activation function 입력")
     parser.add_argument("--hist_path", type=str, help="학습 히스토리를 저장하는 경로")
+    parser.add_argument("--test_path", type=str, help="테스트 데이터의 경로" )
     args = parser.parse_args()
 
 
@@ -120,4 +122,12 @@ if __name__ == "__main__":
         )
 
         hist = pd.DataFrame(history.history)
-        hist.to_pickle(args.hist_path) 
+        hist.to_pickle(args.hist_path)
+
+    elif args.mode == "test":
+        test_model = TestModel(args.model_path)
+        test_model = test_model.test_model()
+
+        pred = Prediction()
+
+        pred.predict_test(args.test_path, test_model, args.img_size)

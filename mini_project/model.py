@@ -47,24 +47,12 @@ class MakeModel(ModelSelect):
         model = keras.Model(inputs, self.model)
         return model
     
-    # dense_1 = add_dense_layer()
-    # batch_2 = add_batch_norm()
-    # dense_2 = add_dense_layer()
 
-    # layers = ( dense_1, batch_2, dense_2 )
+class TestModel:
 
-    # make_model_with_FCL(img_size , *layers):
-    #     (layers, )
-    #     temp = deque([ i for i in ( dense_1, batch_2, dense_2 ) ])
-    #     temp = [ dense_1, batch_2, dense_2]
-    #     args = temp 
+    def __init__(self, model_path):
+        self.model_path = model_path
 
-    #     inputs = keras.layers.Input((img_size, img_size, 3))
-    #     model = model(inputs)
-
-    #     while [ dense_1, batch_2, dense_2]:
-    #         self.model = args[0](self.model)
-    #         args.popleft()
-
-    #     model = keras.Model(inputs, self.model)
-    #     self.model , model 
+    def test_model(self):
+        test_model = tf.keras.models.load_model(self.model_path)
+        return test_model
