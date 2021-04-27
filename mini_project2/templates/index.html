@@ -19,7 +19,7 @@
         </h1>
         <h2>이미지를 업로드 해주세요!</h2>
 
-        <form method="post" action="" name="ImageUpload" enctype="multipart/form-data">
+        <form method="post" action="{% url 'vision:predict'  %}" name="ImageUpload" enctype="multipart/form-data">
             {% csrf_token %}
             <div>
                 <div>
