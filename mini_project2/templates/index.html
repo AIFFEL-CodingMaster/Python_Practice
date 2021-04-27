@@ -1,0 +1,37 @@
+<style>
+    .section {
+        padding: 50px;
+        padding-top: 60px;
+        text-align: center;
+        margin: auto;
+    }
+
+    .section__container {
+        max-width: 1200px;
+        margin: auto;
+    }
+</style>
+
+<section id="classifier" class="section">
+    <div class="container">
+        <h1>
+            </br>Let's Classify Image!
+        </h1>
+        <h2>이미지를 업로드 해주세요!</h2>
+
+        <form method="post" action="" name="ImageUpload" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <div>
+                    <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" name="filePath" />
+                    <label for="imageUpload"></label>
+                </div>
+                <div onclick="imageUpload.click();">
+                    <img src="#" alt="your image" style="display: none;" />
+                </div>
+            </div>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</section>
