@@ -5,6 +5,7 @@ import argparse
 import pandas as pd
 from bs4 import BeautifulSoup
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 
 
@@ -145,9 +146,13 @@ def is_bottom(bottom):
         pagedown(args.scrolldown_nums, args.time_setting)
 
 
-browser = Chrome(args.chromedriver)
+# Option - window size를 줄여서 bottom으로 내려도 댓글이 잘 나오게 만듬
+option = Options()
+# 500 x 800 size
+option.add_argument("--window-size=500,800")
+
+browser = Chrome(args.chromedriver, options=option)
 browser.implicitly_wait(3)
-browser.maximize_window()
 # url open
 browser.get(args.url)
 browser.implicitly_wait(3)
