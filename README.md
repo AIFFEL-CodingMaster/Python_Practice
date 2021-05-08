@@ -1,11 +1,7 @@
-## <img src="https://user-images.githubusercontent.com/60789129/108146882-4f139c00-7111-11eb-85ce-6065e98f787c.png" style="width:150px;"/>
-# Coding Master   
-## :smile:
- * 수요일 1시30분
+# Coding Master    
+ * 수요일 1시30분 :smile:
  * 파이썬 코딩!!
 ---
-<details>
-    <summary>바로가기!</summary>
 
 ## **Python Basic**
 - [파이썬 기초 문법 노트북](https://github.com/AIFFEL-CodingMaster/Jungminchae/tree/main/python_basic)
@@ -29,6 +25,6 @@
 ## **그 밖에...**
 - [jupyter notebook tips, image 전처리 등](https://github.com/AIFFEL-CodingMaster/AIFFEL_coding_flip/tree/main/others/others)
 
-## 마크다운 이모지
+## **마크다운 이모지**
 - [MarkDown-Emoji-link](https://gist.github.com/rxaviers/7360908)
-</details>
+
