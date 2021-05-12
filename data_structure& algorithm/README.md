@@ -13,6 +13,7 @@
 |알고리즘 - 분할정복|[link](https://jadenmun811.tistory.com/19)|
 |알고리즘 - 다이나믹 프로그래밍|[link](https://jadenmun811.tistory.com/20)|
 |알고리즘 - 순차탐색, 이진탐색|[link](https://meme2.tistory.com/65)|
+|알고리즘 - BFS, DFS|[link](https://meme2.tistory.com/66)
 -----
 ## ** Thanks to **
 - 이창호, 이상미, 김리나, 문준형, 서윤선, 정민채, 김진오 
